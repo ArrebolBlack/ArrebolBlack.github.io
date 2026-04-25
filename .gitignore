@@ -1,0 +1,8 @@
+# Old version
+app/
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+desktop.ini

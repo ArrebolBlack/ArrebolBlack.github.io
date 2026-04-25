@@ -1,0 +1,98 @@
+{
+  "name": "Jiaqi Yin",
+  "name_cn": "殷家琦",
+  "title": "Undergraduate Researcher",
+  "affiliation": "Harbin Institute of Technology",
+  "affiliation_url": "https://www.hit.edu.cn/",
+  "avatar": "assets/images/mouse.jpg",
+  "nav": ["About", "News", "Contact", "Research", "Blog"],
+
+  "bio": [
+    "I am an undergraduate student majoring in Artificial Intelligence at [Harbin Institute of Technology](https://www.hit.edu.cn/). My research interests include embodied intelligence and robotics.",
+    "I am currently a visiting research student at [Zhongguancun Academy](https://www.bza.edu.cn/), supervised by [Prof. Ce Hao](https://cehao1.github.io/). During my gap year, I was a visiting student at [SSR Group, Tsinghua SIGS](https://ssr-group.net/) (supervised by [Prof. Wenbo Ding](https://ssr-group.net/)) and [X-Institute](https://www.x-institute.edu.cn/) (supervised by [Prof. Wenzeng Zhang](https://www.researchgate.net/profile/Wenzeng-Zhang)) in Shenzhen.",
+    "I am actively seeking PhD opportunities starting Fall 2027. If you think I could be a good fit for your group, please feel free to [reach out](#contact)!"
+  ],
+
+  "research_tags": [
+    "Embodied Intelligence",
+    "Robotics",
+    "Artificial Intelligence"
+  ],
+
+  "social_links": [
+    { "platform": "email",    "url": "mailto:yjqhit@gmail.com" },
+    { "platform": "github",   "url": "https://github.com/ArrebolBlack" },
+    { "platform": "orcid",    "url": "https://orcid.org/0009-0000-1562-6901" }
+  ],
+
+  "_social_links_disabled": [
+    { "platform": "scholar",  "url": "#" },
+    { "platform": "bilibili", "url": "#" },
+    { "platform": "xiaohongshu", "url": "#" }
+  ],
+
+  "news": [
+    { "date": "2026-04", "content": "Started visiting research at [Zhongguancun Academy](https://www.bza.edu.cn/)." },
+    { "date": "2025-08", "content": "Won 1st Place at the [2025 ASME Student Mechanism & Robot Design Competition](https://sites.google.com/site/asmemrc/design-competition-showcase) (Undergraduate Category)." },
+    { "date": "2025-07", "content": "Visiting student at [X-Institute](https://www.x-institute.edu.cn/), Shenzhen." },
+    { "date": "2025-01", "content": "Visiting student at [SSR Group, Tsinghua SIGS](https://ssr-group.net/)." },
+    { "date": "2024-09", "content": "Huawei Developer Advocate." }
+  ],
+
+  "contact": {
+    "email": "yjqhit@gmail.com | 2078004110@qq.com",
+    "office": ""
+  },
+
+  "blog": [],
+
+  "publications": [
+    {
+      "title": "PAIR-Former: Budgeted Relational MIL for miRNA Target Prediction",
+      "venue": "arXiv 2026",
+      "authors": ["**Jiaqi Yin**", "Baiming Chen", "Jia Fei", "Mingjun Yang"],
+      "image": "assets/images/pair-former-fig1.png",
+      "links": [
+        { "label": "Paper",   "url": "https://doi.org/10.48550/arxiv.2602.00465" }
+      ]
+    },
+    {
+      "title": "SPARK Hand: Scooping-Pinching Adaptive Robotic Hand with Kempe Mechanism for Vertical Passive Grasp in Environmental Constraints",
+      "venue": "IROS 2025",
+      "authors": ["**Jiaqi Yin**", "Tianyi Bi", "Wenzeng Zhang"],
+      "image": "assets/images/spark-hand-fig1.png",
+      "links": [
+        { "label": "Paper",   "url": "https://doi.org/10.1109/iros60139.2025.11246150" }
+      ]
+    },
+    {
+      "title": "Contactless Triboelectric Sensing for Real-Time 3D Motion Recognition in Human-Computer Interaction",
+      "venue": "Advanced Electronic Materials 2025",
+      "authors": ["Qinghao Xu", "Junhao Gong", "Jiayi Chen", "Yimeng Zhang", "Hongfa Zhao", "**Jiaqi Yin**", "Runze Zhao", "Chuqiao Lyu", "Wenbo Ding", "Changsheng Wu"],
+      "image": "assets/images/triboelectric-sensing-fig1.png",
+      "links": [
+        { "label": "Paper",   "url": "https://doi.org/10.1002/aelm.202400950" }
+      ]
+    },
+    {
+      "title": "LumiPane: Intelligent Interaction through Gesture Sensing and Ambient Light Communication",
+      "venue": "IEEE GLOBECOM Workshops 2024",
+      "authors": ["Liguang Ruan", "Chenxin Liang", "**Jiaqi Yin**", "Jiarong Li", "Xiaojun Liang", "Wenbo Ding"],
+      "image": "assets/images/lumipane-fig1.png",
+      "links": [
+        { "label": "Paper",   "url": "https://doi.org/10.1109/GCWKSHP64532.2024.11101040" }
+      ]
+    }
+  ],
+
+  "education": [
+    {
+      "degree": "B.Eng. in Artificial Intelligence",
+      "school": "Harbin Institute of Technology",
+      "school_url": "https://www.hit.edu.cn/",
+      "period": "",
+      "advisor": "",
+      "advisor_url": "#"
+    }
+  ]
+}
