@@ -51,7 +51,7 @@
       "title": "Octo UR5: Real-World Deployment of Octo on Universal Robots",
       "description": "A complete open-source pipeline for deploying the Octo embodied intelligence model on UR5/UR3 robots — simulation, teleoperation, data collection, finetuning, and distributed inference.",
       "images": [
-        "assets/videos/octo-sim.gif",
+        "assets/videos/octo-sim.mp4",
         "assets/videos/octo-real.mp4"
       ],
       "links": [
