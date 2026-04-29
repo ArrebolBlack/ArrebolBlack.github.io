@@ -61,7 +61,7 @@
     },
     {
       "title": "franka-control: Franka Research 3 Control Wrapper for Embodied AI",
-      "description": "A control wrapper for Franka Research 3 aimed at embodied AI (RL, IL, VLA). Supports single-machine and dual-machine deployment with 1kHz FCI, interpolation, and safety boundaries.",
+      "description": "A lightweight control library that decouples high-level policy (RL/IL/VLA) from 1 kHz FCI real-time control. Supports single-machine and dual-machine (GPU cluster + control PC) deployment via ZeroMQ. Provides a Gymnasium-style reset()/step()/close() interface, multiple interpolators (Ruckig, PT1, CubicSpline), joystick teleoperation, and independent gripper service.",
       "links": [
         { "label": "Code", "url": "https://github.com/ArrebolBlack/franka-control" }
       ]
