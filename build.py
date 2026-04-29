@@ -307,6 +307,46 @@ def build_publications(pub_list):
     return "\n\n".join(parts)
 
 
+def build_opensource(os_list):
+    if not os_list:
+        return ""
+    parts = []
+    for proj in os_list:
+        media = proj.get("image", "")
+        if media:
+            media_tag = (
+                f'        <a class="teaser" href="{proj.get("links", [{}])[0].get("url", "#")}" aria-label="Project link">\n'
+                f'          <img src="{media}" alt="Teaser" loading="lazy">\n'
+                f'        </a>'
+            )
+        else:
+            media_tag = (
+                f'        <div class="teaser"></div>'
+            )
+
+        links = []
+        for lk in proj.get("links", []):
+            links.append(
+                f'          <a class="btn" href="{lk["url"]}" target="_blank" rel="noopener">{lk["label"]}</a>'
+            )
+        links_str = "\n".join(links)
+        desc = proj.get("description", "")
+
+        parts.append(
+            f'      <article class="proj">\n'
+            f'{media_tag}\n'
+            f'        <div class="info">\n'
+            f'          <h3>{proj["title"]}</h3>\n'
+            f'          <p>{desc}</p>\n'
+            f'          <div class="actions">\n'
+            f'{links_str}\n'
+            f'          </div>\n'
+            f'        </div>\n'
+            f'      </article>'
+        )
+    return "\n\n".join(parts)
+
+
 def build_education(edu_list):
     items = []
     for i, edu in enumerate(edu_list):
@@ -454,6 +494,15 @@ def build_html(cfg):
       <div class="proj-scroll" id="proj-scroll">
 {build_publications(cfg.get("publications", []))}
       </div>
+    </section>''')
+
+    if "Open Source" in nav:
+        sections.append(f'''
+    <hr class="rule"/>
+
+    <section id="open-source" aria-label="Open Source">
+      <h2>Open Source</h2>
+{build_opensource(cfg.get("opensource", []))}
     </section>''')
 
     if "Blog" in nav:

@@ -5,7 +5,7 @@
   "affiliation": "Harbin Institute of Technology",
   "affiliation_url": "https://www.hit.edu.cn/",
   "avatar": "assets/images/mouse.jpg",
-  "nav": ["About", "News", "Contact", "Research", "Blog"],
+  "nav": ["About", "News", "Contact", "Research", "Open Source", "Blog"],
 
   "bio": [
     "I am an undergraduate student majoring in Artificial Intelligence at [Harbin Institute of Technology](https://www.hit.edu.cn/). My research interests include embodied intelligence and robotics.",
@@ -45,6 +45,18 @@
   },
 
   "blog": [],
+
+  "opensource": [
+    {
+      "title": "Octo UR5: Real-World Deployment of Octo on Universal Robots",
+      "description": "A complete open-source pipeline for deploying the Octo embodied intelligence model on UR5/UR3 robots — simulation, teleoperation, data collection, finetuning, and distributed inference.",
+      "image": "assets/images/octo-ur5-teaser.jpg",
+      "links": [
+        { "label": "Code", "url": "https://github.com/ArrebolBlack/Octo" },
+        { "label": "Dataset", "url": "https://huggingface.co/datasets/JiaqiYin/octo_ur5_dataset" }
+      ]
+    }
+  ],
 
   "publications": [
     {
