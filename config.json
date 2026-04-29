@@ -72,8 +72,9 @@
       "title": "SPARK Hand: Scooping-Pinching Adaptive Robotic Hand with Kempe Mechanism for Vertical Passive Grasp in Environmental Constraints",
       "venue": "IROS 2025",
       "authors": ["**Jiaqi Yin**", "Tianyi Bi", "Wenzeng Zhang"],
-      "image": "assets/images/spark-hand-fig1.png",
+      "video": "assets/videos/sparkhand-demo-short.mp4",
       "links": [
+        { "label": "Website", "url": "https://arrebolblack.github.io/spark-hand/" },
         { "label": "Paper",   "url": "https://doi.org/10.1109/iros60139.2025.11246150" }
       ]
     },

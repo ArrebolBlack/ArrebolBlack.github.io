@@ -238,7 +238,7 @@ def build_nav(nav_items, current="", rel_prefix=""):
             style = ' style="font-weight:700"' if current == "Blog" else ''
             parts.append(f'<a href="{href}"{style}>{item}</a>')
         else:
-            href = f"{rel_prefix}index.html#{item.lower()}"
+            href = f"{rel_prefix}index.html#{item.lower().replace(' ', '-')}"
             parts.append(f'<a href="{href}">{item}</a>')
     return " ".join(parts)
 
@@ -557,7 +557,31 @@ def build_html(cfg):
         projScroll.style.maxHeight = '600px';
       }}
     }}
-    </script>'''
+    </script>
+
+    <hr class="rule"/>
+
+    <section id="say-anything" aria-label="Say Anything">
+      <h2>Say Anything</h2>
+      <div class="giscus"></div>
+      <script src="https://giscus.app/client.js"
+        data-repo="ArrebolBlack/arrebolblack.github.io"
+        data-repo-id="R_kgDOSMj__A"
+        data-category="Announcements"
+        data-category-id="DIC_kwDOSMj__M4C768D"
+        data-mapping="specific"
+        data-term="Say Anything"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="zh-CN"
+        data-loading="lazy"
+        crossorigin="anonymous"
+        async>
+      </script>
+    </section>'''
 
     return _page_html(cfg, cfg["name"], body)
 
