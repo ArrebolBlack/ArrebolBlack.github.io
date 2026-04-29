@@ -58,6 +58,13 @@
         { "label": "Code", "url": "https://github.com/ArrebolBlack/Octo" },
         { "label": "Dataset", "url": "https://huggingface.co/datasets/JiaqiYin/octo_ur5_dataset" }
       ]
+    },
+    {
+      "title": "franka-control: Franka Research 3 Control Wrapper for Embodied AI",
+      "description": "A control wrapper for Franka Research 3 aimed at embodied AI (RL, IL, VLA). Supports single-machine and dual-machine deployment with 1kHz FCI, interpolation, and safety boundaries.",
+      "links": [
+        { "label": "Code", "url": "https://github.com/ArrebolBlack/franka-control" }
+      ]
     }
   ],
 
