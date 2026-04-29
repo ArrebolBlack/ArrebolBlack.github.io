@@ -74,6 +74,8 @@ _CSS = """\
     .proj+.proj{margin-top:14px}
     .teaser{width:100%;display:block;border-radius:6px;background:#ddd;overflow:hidden}
     .teaser img,.teaser video{width:100%;height:auto;max-height:200px;object-fit:contain;border-radius:6px;display:block}
+    .teaser-dual{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:100%}
+    .teaser-dual img,.teaser-dual video{width:100%;height:100%;max-height:200px;object-fit:cover;border-radius:6px;display:block}
     .proj h3{margin:0 0 3px;line-height:1.2}
     .proj .meta{margin:0;line-height:1.25;font-size:14px;color:var(--muted)}
     .proj .info p{margin:6px 0 4px;line-height:1.4}
@@ -307,22 +309,43 @@ def build_publications(pub_list):
     return "\n\n".join(parts)
 
 
+def _media_tag(src, link="#"):
+    ext = src.rsplit(".", 1)[-1].lower() if "." in src else ""
+    if ext in ("mp4", "webm", "ogg"):
+        return (
+            f'<a class="teaser" href="{link}" aria-label="Project link">\n'
+            f'  <video autoplay loop muted playsinline>\n'
+            f'    <source src="{src}" type="video/{ext}">\n'
+            f'  </video>\n'
+            f'</a>'
+        )
+    else:
+        return (
+            f'<a class="teaser" href="{link}" aria-label="Project link">\n'
+            f'  <img src="{src}" alt="Teaser" loading="lazy">\n'
+            f'</a>'
+        )
+
+
 def build_opensource(os_list):
     if not os_list:
         return ""
     parts = []
     for proj in os_list:
-        media = proj.get("image", "")
-        if media:
-            media_tag = (
-                f'        <a class="teaser" href="{proj.get("links", [{}])[0].get("url", "#")}" aria-label="Project link">\n'
-                f'          <img src="{media}" alt="Teaser" loading="lazy">\n'
-                f'        </a>'
-            )
+        first_link = proj.get("links", [{}])[0].get("url", "#")
+        images = proj.get("images", [])
+        if images:
+            if len(images) == 1:
+                media_tag = f'        {_media_tag(images[0], first_link)}'
+            else:
+                items = "\n".join(
+                    f'          {_media_tag(img, first_link)}' for img in images
+                )
+                media_tag = f'        <div class="teaser teaser-dual">\n{items}\n        </div>'
+        elif proj.get("image"):
+            media_tag = f'        {_media_tag(proj["image"], first_link)}'
         else:
-            media_tag = (
-                f'        <div class="teaser"></div>'
-            )
+            media_tag = '        <div class="teaser"></div>'
 
         links = []
         for lk in proj.get("links", []):
