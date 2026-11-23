@@ -50,6 +50,14 @@
     .proj+.proj{margin-top:14px}
     .teaser{width:100%;display:block;border-radius:6px;background:#ddd;overflow:hidden}
     .teaser img,.teaser video{width:100%;height:auto;max-height:200px;object-fit:contain;border-radius:6px;display:block}
+    .paper-figure{position:relative;aspect-ratio:1758/873;max-height:200px;background:#fff}
+    .paper-figure img{position:absolute;top:0;left:0;height:100%;max-height:none}
+    .paper-figure-crop img{
+      width:min(calc(100% * 873 / 1758 * var(--figure-crop-ratio)),calc(200px * var(--figure-crop-ratio)));
+      height:auto;
+      left:50%;
+      transform:translateX(-50%);
+    }
     .teaser-dual{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:100%}
     .teaser-dual img,.teaser-dual video{width:100%;height:100%;max-height:200px;object-fit:cover;border-radius:6px;display:block}
     .proj h3{margin:0 0 3px;line-height:1.2}
@@ -57,6 +65,7 @@
     .proj .info p{margin:6px 0 4px;line-height:1.4}
     .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
     .btn{padding:4px 9px;font-size:14px;line-height:1.1}
+    .btn[aria-disabled="true"]{background:#f0f2f5;color:var(--muted);cursor:default}
     .proj-scroll{overflow-y:auto;scrollbar-width:thin;scrollbar-color:#9aa0ad transparent}
     .proj-scroll::-webkit-scrollbar{width:6px}
     .proj-scroll::-webkit-scrollbar-track{background:transparent}
@@ -178,6 +187,38 @@
       <p> * Equally contributed, &dagger; corresponding author.</p>
       <div class="proj-scroll" id="proj-scroll">
       <article class="proj">
+        <a class="teaser paper-figure paper-figure-crop" href="assets/images/foveawam-fig1.png" aria-label="Open figure at full size" target="_blank" rel="noopener" style="--figure-crop-ratio:2260/1244">
+          <img src="assets/images/foveawam-fig1a.png" alt="FoveaWAM Figure 1(a), showing the gripper and predicted target motion" loading="lazy">
+        </a>
+        <div class="info">
+          <h3>FoveaWAM: Role-Aware 4D World–Action Modeling for Dynamic Manipulation</h3>
+          <p class="meta"><b>Venue/Year:</b> arXiv 2026</p>
+          <p><strong>Jiaqi Yin</strong>, Baoyue Zhang, Jiyuan Zhang, Wenxuan Liu, Zhaofei Yu, Yue Deng†, Tiejun Huang†</p>
+          <div class="actions">
+          <span class="btn" role="link" aria-disabled="true">Website</span>
+          <span class="btn" role="link" aria-disabled="true">Paper</span>
+          <span class="btn" role="link" aria-disabled="true">Code</span>
+          <a class="btn" href="https://huggingface.co/JiaqiYin/FoveaWAM" target="_blank" rel="noopener">Weights</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <a class="teaser paper-figure" href="assets/images/vista-fig3.png" aria-label="Open figure at full size" target="_blank" rel="noopener">
+          <img src="assets/images/vista-fig3.png" alt="VISTA Figure 3, showing the VISTA-Policy architecture" loading="lazy">
+        </a>
+        <div class="info">
+          <h3>VISTA: Visually Inferred Spatial ConTact Attention for Contact-Rich Manipulation</h3>
+          <p class="meta"><b>Venue/Year:</b> arXiv 2026</p>
+          <p>Jiayi Chen*, Wenlong Dong*, Yan Huang*, Xianglin Chen, Zijian Lin, <strong>Jiaqi Yin</strong>, Yushan Liu, Wenbo Ding†</p>
+          <div class="actions">
+          <a class="btn" href="https://sites.google.com/view/vista-policy" target="_blank" rel="noopener">Website</a>
+          <a class="btn" href="https://arxiv.org/abs/2608.25872" target="_blank" rel="noopener">Paper</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
         <a class="teaser" href="#" aria-label="Project website">
           <img src="assets/images/pair-former-fig1.png" alt="Teaser" loading="lazy">
         </a>
@@ -243,6 +284,21 @@
     <section id="open-source" aria-label="Open Source">
       <h2>Open Source</h2>
       <article class="proj">
+        <a class="teaser" href="assets/images/ontimebench-fig4.png" aria-label="Open figure at full size" target="_blank" rel="noopener">
+          <img src="assets/images/ontimebench-fig4.png" alt="Overview of the OnTimeBench benchmark and its 14 tasks" loading="lazy">
+        </a>
+        <div class="info">
+          <h3>OnTimeBench</h3>
+          <p>OnTimeBench is a MuJoCo benchmark for dynamic robotic manipulation, with 14 tasks across five families and 1,400 held-out test scenes. The simulation advances during inference so each policy is evaluated at its native latency.</p>
+          <div class="actions">
+          <span class="btn" role="link" aria-disabled="true">Website</span>
+          <span class="btn" role="link" aria-disabled="true">Code</span>
+          <a class="btn" href="https://huggingface.co/datasets/JiaqiYin/OnTimeBench" target="_blank" rel="noopener">Dataset</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj">
         <div class="teaser teaser-dual">
           <a class="teaser" href="https://github.com/ArrebolBlack/Octo" aria-label="Project link">
   <video autoplay loop muted playsinline>
@@ -264,6 +320,7 @@
           </div>
         </div>
       </article>
+
       <article class="proj">
         <a class="teaser" href="https://github.com/ArrebolBlack/franka-control" aria-label="Project link">
           <img src="assets/images/franka-control-logo.png" alt="franka-control" loading="lazy">
