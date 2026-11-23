@@ -9,6 +9,7 @@ import sys
 import os
 import html as _html_mod
 from datetime import datetime
+from textwrap import indent
 
 DEFAULT_CONFIG = "config.json"
 DEFAULT_OUTPUT = "index.html"
@@ -74,6 +75,14 @@ _CSS = """\
     .proj+.proj{margin-top:14px}
     .teaser{width:100%;display:block;border-radius:6px;background:#ddd;overflow:hidden}
     .teaser img,.teaser video{width:100%;height:auto;max-height:200px;object-fit:contain;border-radius:6px;display:block}
+    .paper-figure{position:relative;aspect-ratio:1758/873;max-height:200px;background:#fff}
+    .paper-figure img{position:absolute;top:0;left:0;height:100%;max-height:none}
+    .paper-figure-crop img{
+      width:min(calc(100% * 873 / 1758 * var(--figure-crop-ratio)),calc(200px * var(--figure-crop-ratio)));
+      height:auto;
+      left:50%;
+      transform:translateX(-50%);
+    }
     .teaser-dual{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:100%}
     .teaser-dual img,.teaser-dual video{width:100%;height:100%;max-height:200px;object-fit:cover;border-radius:6px;display:block}
     .proj h3{margin:0 0 3px;line-height:1.2}
@@ -81,6 +90,7 @@ _CSS = """\
     .proj .info p{margin:6px 0 4px;line-height:1.4}
     .actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
     .btn{padding:4px 9px;font-size:14px;line-height:1.1}
+    .btn[aria-disabled="true"]{background:#f0f2f5;color:var(--muted);cursor:default}
     .proj-scroll{overflow-y:auto;scrollbar-width:thin;scrollbar-color:#9aa0ad transparent}
     .proj-scroll::-webkit-scrollbar{width:6px}
     .proj-scroll::-webkit-scrollbar-track{background:transparent}
@@ -257,7 +267,29 @@ def build_news(news_list):
     return "\n".join(items)
 
 
-def build_publications(pub_list):
+def _project_links(project, shared_links):
+    shared_links = shared_links or {}
+    return [
+        (link["label"], shared_links.get(link["shared"]) if "shared" in link else link.get("url"))
+        for link in project.get("links", [])
+    ]
+
+
+def _action_links(links):
+    parts = []
+    for label, url in links:
+        label = _html_mod.escape(label)
+        if url:
+            href = _html_mod.escape(url, quote=True)
+            parts.append(
+                f'          <a class="btn" href="{href}" target="_blank" rel="noopener">{label}</a>'
+            )
+        else:
+            parts.append(f'          <span class="btn" role="link" aria-disabled="true">{label}</span>')
+    return "\n".join(parts)
+
+
+def build_publications(pub_list, shared_links=None):
     if not pub_list:
         return '        <p style="color:var(--muted)">Coming soon.</p>'
     parts = []
@@ -265,33 +297,14 @@ def build_publications(pub_list):
         authors_str = ", ".join(parse_md_links(a) for a in pub["authors"])
         media = pub.get("image", "") or pub.get("video", "")
         if media:
-            ext = media.rsplit(".", 1)[-1].lower() if "." in media else ""
-            if ext in ("mp4", "webm", "ogg"):
-                media_tag = (
-                    f'        <a class="teaser" href="#" aria-label="Project website">\n'
-                    f'          <video autoplay loop muted playsinline>\n'
-                    f'            <source src="{media}" type="video/{ext}">\n'
-                    f'          </video>\n'
-                    f'        </a>'
-                )
-            else:
-                media_tag = (
-                    f'        <a class="teaser" href="#" aria-label="Project website">\n'
-                    f'          <img src="{media}" alt="Teaser" loading="lazy">\n'
-                    f'        </a>'
-                )
+            media_tag = indent(_media_tag(media, project=pub, label="Project website"), "        ")
         else:
             media_tag = (
                 f'        <a class="teaser" href="#" aria-label="Project website">\n'
                 f'        </a>'
             )
 
-        links = []
-        for lk in pub.get("links", []):
-            links.append(
-                f'          <a class="btn" href="{lk["url"]}" target="_blank" rel="noopener">{lk["label"]}</a>'
-            )
-        links_str = "\n".join(links)
+        links_str = _action_links(_project_links(pub, shared_links))
 
         parts.append(
             f'      <article class="proj">\n'
@@ -309,30 +322,46 @@ def build_publications(pub_list):
     return "\n\n".join(parts)
 
 
-def _media_tag(src, link="#"):
+def _media_tag(src, link="#", *, project=None, label="Project link"):
+    project = project or {}
+    full_size = project.get("image_link")
+    href = _html_mod.escape(full_size or link or "#", quote=True)
+    attributes = ""
+    if full_size:
+        label = "Open figure at full size"
+        attributes = ' target="_blank" rel="noopener"'
+
+    classes = "teaser"
+    if project.get("paper_figure"):
+        classes += " paper-figure"
+        crop = project.get("image_crop")
+        if crop:
+            width, visible_height = map(int, crop)
+            classes += " paper-figure-crop"
+            attributes += f' style="--figure-crop-ratio:{width}/{visible_height}"'
+
+    opening = f'<a class="{classes}" href="{href}" aria-label="{label}"{attributes}>'
     ext = src.rsplit(".", 1)[-1].lower() if "." in src else ""
+    src = _html_mod.escape(src, quote=True)
     if ext in ("mp4", "webm", "ogg"):
         return (
-            f'<a class="teaser" href="{link}" aria-label="Project link">\n'
+            f'{opening}\n'
             f'  <video autoplay loop muted playsinline>\n'
             f'    <source src="{src}" type="video/{ext}">\n'
             f'  </video>\n'
             f'</a>'
         )
-    else:
-        return (
-            f'<a class="teaser" href="{link}" aria-label="Project link">\n'
-            f'  <img src="{src}" alt="Teaser" loading="lazy">\n'
-            f'</a>'
-        )
+    alt = _html_mod.escape(project.get("image_alt", "Teaser"), quote=True)
+    return f'{opening}\n  <img src="{src}" alt="{alt}" loading="lazy">\n</a>'
 
 
-def build_opensource(os_list):
+def build_opensource(os_list, shared_links=None):
     if not os_list:
         return ""
     parts = []
     for proj in os_list:
-        first_link = proj.get("links", [{}])[0].get("url", "#")
+        links = _project_links(proj, shared_links)
+        first_link = next((url for _, url in links if url), "#")
         images = proj.get("images", [])
         if images:
             if len(images) == 1:
@@ -343,16 +372,11 @@ def build_opensource(os_list):
                 )
                 media_tag = f'        <div class="teaser teaser-dual">\n{items}\n        </div>'
         elif proj.get("image"):
-            media_tag = f'        {_media_tag(proj["image"], first_link)}'
+            media_tag = indent(_media_tag(proj["image"], first_link, project=proj), "        ")
         else:
             media_tag = '        <div class="teaser"></div>'
 
-        links = []
-        for lk in proj.get("links", []):
-            links.append(
-                f'          <a class="btn" href="{lk["url"]}" target="_blank" rel="noopener">{lk["label"]}</a>'
-            )
-        links_str = "\n".join(links)
+        links_str = _action_links(links)
         desc = proj.get("description", "")
 
         parts.append(
@@ -469,6 +493,7 @@ def _page_html(cfg, title, body_html, current="", rel_prefix=""):
 # ---------- Page builders ----------
 
 def build_html(cfg):
+    shared_links = cfg.get("shared_links")
     display_name = cfg["name"]
     if cfg.get("name_cn"):
         display_name = f'{cfg["name"]} ({cfg["name_cn"]})'
@@ -515,7 +540,7 @@ def build_html(cfg):
       <h2>Research Projects</h2>
       <p> * Equally contributed, &dagger; corresponding author.</p>
       <div class="proj-scroll" id="proj-scroll">
-{build_publications(cfg.get("publications", []))}
+{build_publications(cfg.get("publications", []), shared_links)}
       </div>
     </section>''')
 
@@ -525,7 +550,7 @@ def build_html(cfg):
 
     <section id="open-source" aria-label="Open Source">
       <h2>Open Source</h2>
-{build_opensource(cfg.get("opensource", []))}
+{build_opensource(cfg.get("opensource", []), shared_links)}
     </section>''')
 
     if "Blog" in nav:

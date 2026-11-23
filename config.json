@@ -44,7 +44,23 @@
 
   "blog": [],
 
+  "shared_links": {
+    "foveawam_website": null
+  },
+
   "opensource": [
+    {
+      "title": "OnTimeBench",
+      "description": "OnTimeBench is a MuJoCo benchmark for dynamic robotic manipulation, with 14 tasks across five families and 1,400 held-out test scenes. The simulation advances during inference so each policy is evaluated at its native latency.",
+      "image": "assets/images/ontimebench-fig4.png",
+      "image_link": "assets/images/ontimebench-fig4.png",
+      "image_alt": "Overview of the OnTimeBench benchmark and its 14 tasks",
+      "links": [
+        { "label": "Website", "shared": "foveawam_website" },
+        { "label": "Code", "url": null },
+        { "label": "Dataset", "url": "https://huggingface.co/datasets/JiaqiYin/OnTimeBench" }
+      ]
+    },
     {
       "title": "Octo UR5: Real-World Deployment of Octo on Universal Robots",
       "description": "A complete open-source pipeline for deploying the Octo embodied intelligence model on UR5/UR3 robots — simulation, teleoperation, data collection, finetuning, and distributed inference.",
@@ -60,6 +76,8 @@
     {
       "title": "franka-control: Franka Research 3 Control Wrapper for Embodied AI",
       "description": "A lightweight control library that decouples high-level policy (RL/IL/VLA) from 1 kHz FCI real-time control. Supports single-machine and dual-machine (GPU cluster + control PC) deployment via ZeroMQ. Provides a Gymnasium-style reset()/step()/close() interface, multiple interpolators (Ruckig, PT1, CubicSpline), joystick teleoperation, and independent gripper service.",
+      "image": "assets/images/franka-control-logo.png",
+      "image_alt": "franka-control",
       "links": [
         { "label": "Code", "url": "https://github.com/ArrebolBlack/franka-control" }
       ]
@@ -67,6 +85,35 @@
   ],
 
   "publications": [
+    {
+      "title": "FoveaWAM: Role-Aware 4D World–Action Modeling for Dynamic Manipulation",
+      "venue": "arXiv 2026",
+      "authors": ["**Jiaqi Yin**", "Baoyue Zhang", "Jiyuan Zhang", "Wenxuan Liu", "Zhaofei Yu", "Yue Deng†", "Tiejun Huang†"],
+      "image": "assets/images/foveawam-fig1a.png",
+      "image_link": "assets/images/foveawam-fig1.png",
+      "image_alt": "FoveaWAM Figure 1(a), showing the gripper and predicted target motion",
+      "paper_figure": true,
+      "image_crop": [2260, 1244],
+      "links": [
+        { "label": "Website", "shared": "foveawam_website" },
+        { "label": "Paper", "url": null },
+        { "label": "Code", "url": null },
+        { "label": "Weights", "url": "https://huggingface.co/JiaqiYin/FoveaWAM" }
+      ]
+    },
+    {
+      "title": "VISTA: Visually Inferred Spatial ConTact Attention for Contact-Rich Manipulation",
+      "venue": "arXiv 2026",
+      "authors": ["Jiayi Chen*", "Wenlong Dong*", "Yan Huang*", "Xianglin Chen", "Zijian Lin", "**Jiaqi Yin**", "Yushan Liu", "Wenbo Ding†"],
+      "image": "assets/images/vista-fig3.png",
+      "image_link": "assets/images/vista-fig3.png",
+      "image_alt": "VISTA Figure 3, showing the VISTA-Policy architecture",
+      "paper_figure": true,
+      "links": [
+        { "label": "Website", "url": "https://sites.google.com/view/vista-policy" },
+        { "label": "Paper", "url": "https://arxiv.org/abs/2608.25872" }
+      ]
+    },
     {
       "title": "PAIR-Former: Budgeted Relational MIL for miRNA Target Prediction",
       "venue": "arXiv 2026",
