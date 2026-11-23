@@ -1,21 +1,19 @@
 {
   "name": "Jiaqi Yin",
   "name_cn": "殷家琦",
-  "title": "Undergraduate Researcher",
-  "affiliation": "Harbin Institute of Technology",
-  "affiliation_url": "https://www.hit.edu.cn/",
+  "title": "Incoming Ph.D. Student",
+  "affiliation": "Peking University",
+  "affiliation_url": "https://english.pku.edu.cn/",
   "avatar": "assets/images/mouse.jpg",
   "nav": ["About", "News", "Contact", "Research", "Open Source", "Blog"],
 
   "bio": [
-    "I am an undergraduate student majoring in Artificial Intelligence at [Harbin Institute of Technology](https://www.hit.edu.cn/). My research interests include embodied intelligence and robotics.",
-    "I am currently a visiting research student at [Zhongguancun Academy](https://www.bza.edu.cn/), supervised by [Prof. Ce Hao](https://cehao1.github.io/). During my gap year, I was a visiting student at [SSR Group, Tsinghua SIGS](https://ssr-group.net/) (supervised by [Prof. Wenbo Ding](https://ssr-group.net/)) and [X-Institute](https://www.x-institute.edu.cn/) (supervised by [Prof. Wenzeng Zhang](https://www.researchgate.net/profile/Wenzeng-Zhang)) in Shenzhen.",
-    "<s>I am actively seeking PhD opportunities starting Fall 2027. If you think I could be a good fit for your group, please feel free to [reach out](#contact)!</s> <em>(Update: PhD advisor confirmed on 2026-05-14.)</em>"
+    "I will begin my Ph.D. at Peking University’s School of Computer Science in Fall 2027 under the supervision of [Prof. Tiejun Huang](https://cs.pku.edu.cn/info/1236/2132.htm). My research interests include embodied intelligence and world models."
   ],
 
   "research_tags": [
     "Embodied Intelligence",
-    "Robotics",
+    "World Models",
     "Artificial Intelligence"
   ],
 
@@ -32,7 +30,7 @@
   ],
 
   "news": [
-    { "date": "2026-04", "content": "Started visiting research at [Zhongguancun Academy](https://www.bza.edu.cn/)." },
+    { "date": "2026-04", "content": "Visiting student at [Zhongguancun Academy](https://www.bza.edu.cn/)." },
     { "date": "2025-08", "content": "Won 1st Place at the [2025 ASME Student Mechanism & Robot Design Competition](https://sites.google.com/site/asmemrc/design-competition-showcase) (Undergraduate Category)." },
     { "date": "2025-07", "content": "Visiting student at [X-Institute](https://www.x-institute.edu.cn/), Shenzhen." },
     { "date": "2025-01", "content": "Visiting student at [SSR Group, Tsinghua SIGS](https://ssr-group.net/)." },
